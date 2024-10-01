@@ -294,3 +294,35 @@ public class Main {
         return balanco == 0 && operadorEncontrado && !ultimoOperador;
     }
 }
+
+// Referências:
+// 
+// 1. ECKEL, Bruce. Thinking in Java. 4th ed. Disponível em: 
+//    <https://github.com/media-lib/prog_lib/blob/master/java/Bruce%20Eckel%20-%20Thinking%20in%20Java%204th%20Edition.pdf>. 
+//    Acesso em: 28 set. 2024.
+// 
+// 2. ECKEL, Bruce. Thinking in Java. 4th ed. Upper Saddle River: Prentice Hall, 2006.
+// 
+// 3. GASPAR, Wagner. Como resolver expressão em notação pós-fixa (notação polonesa reversa). Disponível em: 
+//    <https://wagnergaspar.com/como-resolver-expressao-em-notacao-pos-fixa-notacao-polonesa-reversa/#:~:text=A%20nota%C3%A7%C3%A3o%20p%C3%B3s%2Dfixa%20ou,a%20ser%20realizada%20a%20direita>. 
+//    Acesso em: 28 set. 2024.
+// 
+// 4. MIRANDA, Paulo. Aula 13 - Notação Polonesa. Disponível em: 
+//    <http://www.vision.ime.usp.br/~pmiranda/mac122_2s14/aulas/aula13/aula13.html>. 
+//    Acesso em: 28 set. 2024.
+// 
+// 5. ORACLE. Class Queue. Disponível em: 
+//    <https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Queue.html>. 
+//    Acesso em: 28 set. 2024.
+// 
+// 6. ORACLE. Class Stack. Disponível em: 
+//    <https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Stack.html>. 
+//    Acesso em: 28 set. 2024.
+// 
+// 7. ORACLE. Java SE 11 Documentation. Disponível em: 
+//    <https://docs.oracle.com/en/java/javase/11/docs/api/index.html>. 
+//    Acesso em: 28 set. 2024.
+// 
+// 8. PANDA. Expressões Infixa, Prefixa e Pós-fixa. Disponível em: 
+//    <https://panda.ime.usp.br/panda/static/pythonds_pt/03-EDBasicos/09-ExpressoesInfixaPrefixaPosfixa.html>. 
+//    Acesso em: 28 set. 2024.
