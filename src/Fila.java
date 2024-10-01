@@ -1,70 +1,70 @@
 public class Fila<T> {
-    private static final int TAM_DEFAULT = 100;
-    private int inicio, fim, qtd;
-    private Object[] e;
 
-    public Fila(int tamanho) {
-        this.inicio = 0;
-        this.fim = 0;
-        this.qtd = 0;
-        e = new Object[tamanho];
-    }
+    private static final int TAMANHO_PADRAO = 10;
+    private T dados[];
+    private int contagem;
+    private int primeiro;
+    private int ultimo;
 
     public Fila() {
-        this(TAM_DEFAULT);
-    }
-
-    public boolean qIsEmpty() {
-        return (qtd == 0);
-    }
-
-    public boolean qIsFull() {
-        return (qtd == e.length);
-    }
-
-    public void enqueue(T elemento) throws Exception {
-        if (!qIsFull()) {
-            this.e[this.fim++] = elemento;
-            this.fim = this.fim % this.e.length;
-            this.qtd++;
-        } else {
-            throw new Exception("Overflow - Estouro de Fila");
-        }
+        this(TAMANHO_PADRAO);
     }
 
     @SuppressWarnings("unchecked")
-    public T dequeue() throws Exception {
-        T aux;
-        if (!qIsEmpty()) {
-            aux = (T) this.e[this.inicio];
-            this.inicio = ++this.inicio % this.e.length;
-            this.qtd--;
-            return aux;
-        } else {
-            throw new Exception("Underflow - Esvaziamento de Fila");
-        }
+    public Fila(int tamanho) {
+        dados = (T[]) new Object[tamanho];
+        contagem = 0;
+        primeiro = 0;
+        ultimo = 0;
     }
 
-    @SuppressWarnings("unchecked")
-    public T front() throws Exception {
-        if (!qIsEmpty()) {
-            return (T) e[inicio];
-        } else {
-            throw new Exception("Underflow - Esvaziamento de Fila");
+    public void enfileirar(T valor) {
+        if (estaCheia()) {
+            throw new RuntimeException("enfileirar(): fila cheia.");
         }
+        dados[ultimo] = valor;
+        contagem++;
+        ultimo = (ultimo + 1) % dados.length;
     }
 
-    @SuppressWarnings("unchecked")
-    public T rear() throws Exception {
-        if (!qIsEmpty()) {
-            int pfinal = (this.fim != 0) ? this.fim - 1 : this.e.length - 1;
-            return (T) this.e[pfinal];
-        } else {
-            throw new Exception("Underflow - Esvaziamento de Fila");
-        }
+    public boolean estaCheia() {
+        return contagem == dados.length;
     }
 
-    public int totalElementos() {
-        return qtd;
+    public T desenfileirar() {
+        if (estaVazia()) {
+            throw new RuntimeException("desenfileirar(): a fila está vazia.");
+        }
+        T valor = dados[primeiro];
+        primeiro = (primeiro + 1) % dados.length;
+        contagem--;
+        return valor;
+    }
+
+    public boolean estaVazia() {
+        return contagem == 0;
+    }
+
+    public T frente() {
+        if (estaVazia()) {
+            throw new RuntimeException("frente(): fila vazia");
+        }
+        return dados[primeiro];
+    }
+
+    public T tras() {
+        if (estaVazia()) {
+            throw new RuntimeException("tras(): fila vazia");
+        }
+        int indice = (dados.length + ultimo - 1) % dados.length;
+        return dados[indice];
+    }
+
+    public int tamanho() {
+        return dados.length;
+    }
+
+    public int contador() {
+        return contagem;
     }
 }
