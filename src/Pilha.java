@@ -1,82 +1,52 @@
-public class Pilha {
+public class Pilha<T> {
+    private static final int TAMANHO_PADRAO = 30;
 
-    private static final int TAM_DEFAULT = 100;
-    private int topoPilha;
-    private char[] e; // Array de char
+    private T dados[];
+    private int contagem;
 
     public Pilha(int tamanho) {
-        this.e = new char[tamanho];
-        this.topoPilha = -1;
+        this.dados = (T[]) new Object[tamanho];
+        this.contagem = 0;
     }
 
     public Pilha() {
-        this(TAM_DEFAULT);
+        this(TAMANHO_PADRAO);
+        this.contagem = 0;
     }
 
-    public boolean isEmpty() {
-        return this.topoPilha == -1;
+    public void empilhar(T valor) {
+        if (estaCheia())
+            return;
+        dados[contagem] = valor;
+        contagem++;
     }
 
-    public boolean isFull() {
-        return this.topoPilha == this.e.length-1;
+    public void desempilhar() {
+        if (estaVazia())
+            return;
+        --contagem;
+        dados[contagem] = null;
     }
 
-    public void push(char e) {
-        if (!this.isFull()) {
-            this.e[++this.topoPilha] = e;
-        } else {
-            System.out.println("Overflow - Estouro de Pilha");
-        }
+    public T topo() {
+        if (estaVazia())
+            return null;
+        return dados[contagem - 1];
     }
 
-    public char pop() {
-        if (!this.isEmpty()) {
-            return this.e[this.topoPilha--];
-        } else {
-            System.out.println("Underflow - Esvaziamento de Pilha");
-            return '\0'; // Retorna char nulo em caso de underflow
-        }
+    public boolean estaCheia() {
+        return contagem == dados.length;
     }
 
-    public char topo() {
-        if (!this.isEmpty()) {
-            return this.e[this.topoPilha];
-        } else {
-            System.out.println("Underflow - Esvaziamento de Pilha");
-            return '\0'; // Retorna char nulo em caso de pilha vazia
-        }
+    public boolean estaVazia() {
+        return contagem == 0;
     }
 
-    public int totalElementos() {
-        return topoPilha + 1;
+    public int contagem() {
+        return contagem;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[Pilha] topoPilha: ")
-                .append(topoPilha)
-                .append(", capacidade: ")
-                .append(e.length)
-                .append(", quantidade de elementos: ")
-                .append(totalElementos());
-        if (topoPilha != -1) {
-            sb.append(", valor do Topo: ")
-                    .append(topo());
-        } else {
-            sb.append(", valor do Topo: PILHA VAZIA");
-        }
-
-        sb.append("\nConteúdo da Pilha: [ ");
-
-        for (int i = 0; i <= topoPilha; ++i) {
-            if (i != topoPilha) {
-                sb.append(e[i]).append(", ");
-            } else {
-                sb.append(e[i]);
-            }
-        }
-        sb.append(" ]");
-        return sb.toString();
+    public int tamanho() {
+        return dados.length;
     }
 }
